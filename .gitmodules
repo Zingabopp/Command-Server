@@ -1,0 +1,3 @@
+[submodule "Command-Server/libs/CommandPluginLib"]
+	path = Command-Server/libs/CommandPluginLib
+	url = https://github.com/Zingabopp/CommandPluginLib.git
