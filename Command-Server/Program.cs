@@ -41,12 +41,6 @@ namespace Command_Server
             */
             Logger.Info("Starting Command-Server");
             Plugins = new List<ICommandPlugin>();
-            //ICommandPlugin plugin = new OBSPlugin();
-            //Plugins.Add(plugin);
-            var dat = new MessageData("OBS-Source", "OBS-Destination", "Lawllawl","Flaggy");
-            Logger.Warning($"\n{dat.ToString(5)}");
-            dat.Data = dat.ToJSON();
-            Logger.Error($"\n{dat.ToString(5)}");
             Plugins = LoadPlugins();
             ws = new WebSocketSharp.WebSocket(bsUrl);
             ws.Log.Output = (_, __) => { }; // Disable error output
@@ -150,10 +144,13 @@ namespace Command_Server
                     {
                         try
                         {
-                            //Console.WriteLine($"Found correct type in {file}");
+                            Logger.Trace($"Found correct type in {file}");
                             ICommandPlugin pluginInstance = Activator.CreateInstance(t) as ICommandPlugin;
-                            plugins.Add(pluginInstance);
-                            Logger.Info($"   Loaded {pluginInstance.PluginName} from {file.Substring(file.LastIndexOf(@"\") + 1)}");
+                            //Logger.Info($"   Loaded {pluginInstance.PluginName} from {file.Substring(file.LastIndexOf(@"\") + 1)}");
+                            if (pluginInstance != null)
+                                plugins.Add(pluginInstance);
+                            else
+                                Logger.Error($"Unable to load plugin: {t.FullName} in {file} - Instance could not be created.");
                         }
                         catch (Exception ex)
                         {
