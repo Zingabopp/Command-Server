@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Command-Server", "Command-Server\Command-Server.csproj", "{36878953-7EA0-4B9E-B9A3-EF9A69A2B62C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B328D3A4-2516-488F-B93B-63986C0E5348} = {B328D3A4-2516-488F-B93B-63986C0E5348}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandPluginLib", "Command-Server\libs\CommandPluginLib\CommandPluginLib\CommandPluginLib.csproj", "{B328D3A4-2516-488F-B93B-63986C0E5348}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{36878953-7EA0-4B9E-B9A3-EF9A69A2B62C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36878953-7EA0-4B9E-B9A3-EF9A69A2B62C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36878953-7EA0-4B9E-B9A3-EF9A69A2B62C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B328D3A4-2516-488F-B93B-63986C0E5348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B328D3A4-2516-488F-B93B-63986C0E5348}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B328D3A4-2516-488F-B93B-63986C0E5348}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B328D3A4-2516-488F-B93B-63986C0E5348}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
