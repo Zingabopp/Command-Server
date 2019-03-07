@@ -20,9 +20,11 @@ namespace Command_Server
 
     public static class Logger
     {
-        private static readonly string LoggerName = "Command-Server";
+        private static readonly string LoggerName = typeof(Logger).Namespace;
         public static LogLevel LogLevel = LogLevel.Info;
         private static readonly ConsoleColor DefaultFgColor = ConsoleColor.Gray;
+        public static bool ShortenSourceName = false;
+        public static bool ShowTime = true;
 
         private static void ResetForegroundColor()
         {
@@ -40,7 +42,14 @@ namespace Command_Server
             }
 
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"[{Path.GetFileName(file)}_{member}({line}) @ {DateTime.Now.ToString("HH:mm")} - Info] {text}");
+            string sourcePart, timePart = "";
+            if(!ShortenSourceName)
+                 sourcePart = $"[{Path.GetFileName(file)}_{member}({line})";
+            else
+                sourcePart = $"[{LoggerName}";
+            if(ShowTime)
+                timePart = $" @ {DateTime.Now.ToString("HH:mm")}"; 
+            Console.WriteLine($"{sourcePart}{timePart} - Trace] {text}");
             //Console.ForegroundColor = ConsoleColor.Cyan;
             //Console.WriteLine("[" + LoggerName + " @ " + DateTime.Now.ToString("HH:mm") + " - Trace] " + String.Format(format, args));
             ResetForegroundColor();
@@ -57,7 +66,14 @@ namespace Command_Server
             }
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"[{Path.GetFileName(file)}_{member}({line}) @ {DateTime.Now.ToString("HH:mm")} - Info] {text}");
+            string sourcePart, timePart = "";
+            if (!ShortenSourceName)
+                sourcePart = $"[{Path.GetFileName(file)}_{member}({line})";
+            else
+                sourcePart = $"[{LoggerName}";
+            if (ShowTime)
+                timePart = $" @ {DateTime.Now.ToString("HH:mm")}";
+            Console.WriteLine($"{sourcePart}{timePart} - Debug] {text}");
             //Console.ForegroundColor = ConsoleColor.Green;
             //Console.WriteLine("[" + LoggerName + " @ " + DateTime.Now.ToString("HH:mm") + " - Debug] " + String.Format(format, args));
             ResetForegroundColor();
@@ -74,7 +90,14 @@ namespace Command_Server
             }
 
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine($"[{Path.GetFileName(file)}_{member}({line}) @ {DateTime.Now.ToString("HH:mm")} - Info] {text}");
+            string sourcePart, timePart = "";
+            if (!ShortenSourceName)
+                sourcePart = $"[{Path.GetFileName(file)}_{member}({line})";
+            else
+                sourcePart = $"[{LoggerName}";
+            if (ShowTime)
+                timePart = $" @ {DateTime.Now.ToString("HH:mm")}";
+            Console.WriteLine($"{sourcePart}{timePart} - Info] {text}");
             //Console.WriteLine("[" + LoggerName + " @ " + DateTime.Now.ToString("HH:mm") + " - Info] " + String.Format(format, args));
             //Console.WriteLine("{0}_{1}({2}): {3}", Path.GetFileName(file), member, line, format);
             ResetForegroundColor();
@@ -91,7 +114,14 @@ namespace Command_Server
             }
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"[{Path.GetFileName(file)}_{member}({line}) @ {DateTime.Now.ToString("HH:mm")} - Warning] {text}");
+            string sourcePart, timePart = "";
+            if (!ShortenSourceName)
+                sourcePart = $"[{Path.GetFileName(file)}_{member}({line})";
+            else
+                sourcePart = $"[{LoggerName}";
+            if (ShowTime)
+                timePart = $" @ {DateTime.Now.ToString("HH:mm")}";
+            Console.WriteLine($"{sourcePart}{timePart} - Warning] {text}");
             //Console.ForegroundColor = ConsoleColor.Yellow;
             //Console.WriteLine("[" + LoggerName + " @ " + DateTime.Now.ToString("HH:mm") + " - Warning] " + String.Format(format, args));
             ResetForegroundColor();
@@ -103,8 +133,15 @@ namespace Command_Server
             [CallerLineNumber] int line = 0)//params object[] args)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"[{Path.GetFileName(file)}_{member}({line}) @ {DateTime.Now.ToString("HH:mm")} - Error] {text}");
-            
+            string sourcePart, timePart = "";
+            if (!ShortenSourceName)
+                sourcePart = $"[{Path.GetFileName(file)}_{member}({line})";
+            else
+                sourcePart = $"[{LoggerName}";
+            if (ShowTime)
+                timePart = $" @ {DateTime.Now.ToString("HH:mm")}";
+            Console.WriteLine($"{sourcePart}{timePart} - Error] {text}");
+
             //Console.WriteLine("[" + LoggerName + " @ " + DateTime.Now.ToString("HH:mm") + " - Error] " + String.Format(format, args));
             ResetForegroundColor();
         }

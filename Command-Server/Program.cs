@@ -26,6 +26,8 @@ namespace Command_Server
         {
             
             Logger.LogLevel = LogLevel.Trace;
+            Logger.ShortenSourceName = true;
+            Logger.ShowTime = false;
             /*
             for (int i = 0; i <= 4; i++)
             {
@@ -45,13 +47,18 @@ namespace Command_Server
             ws = new WebSocketSharp.WebSocket(bsUrl);
             ws.Log.Output = (_, __) => { }; // Disable error output
             ws.OnMessage += OnMessage;
+            /*
+            ws.OnClose += (s, e) => {
+                Logger.Info($"Disconnected");
+            };
+            */
             TryConnect();
             Console.ReadKey(true);
             ws.Close();
             Console.ReadKey(true);
 
         }
-
+        public event EventHandler Disconnected;
         static void SendMessage(MessageData msg)
         {
             Logger.Debug($"Sending message: {msg.ToString(3)}");
