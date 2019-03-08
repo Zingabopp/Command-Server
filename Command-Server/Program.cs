@@ -59,9 +59,10 @@ namespace Command_Server
 
         }
         public event EventHandler Disconnected;
-        static void SendMessage(MessageData msg)
+        static void SendMessage(object sender, MessageData msg)
         {
             Logger.Debug($"Sending message: {msg.ToString(3)}");
+            ws.Send(msg.ToJSON());
         }
 
         static void TryConnect(int maxAttempts = -1)
