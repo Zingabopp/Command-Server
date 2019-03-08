@@ -130,7 +130,7 @@ namespace Command_Server
             }
             foreach (var p in plugins)
             {
-                p.Start();
+                p.Initialize();
                 p.MessageReady += SendMessage;
             }
             return plugins;
