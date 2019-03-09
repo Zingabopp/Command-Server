@@ -61,7 +61,7 @@ namespace Command_Server
         public event EventHandler Disconnected;
         static void SendMessage(object sender, MessageData msg)
         {
-            Logger.Debug($"Sending message: {msg.ToString(3)}");
+            Logger.Debug($"Sending message:\n{msg.ToString(3)}");
             ws.Send(msg.ToJSON());
         }
 
@@ -99,7 +99,7 @@ namespace Command_Server
         /// <param name="e"></param>
         static void OnMessage(object sender, MessageEventArgs e)
         {
-            Logger.Trace($"Received message: {e.Data.ToMessageData().ToString(3)}");
+            Logger.Trace($"Received message:\n{e.Data.ToMessageData().ToString(3)}");
             var msg = e.Data.ToMessageData();
             foreach (var p in Plugins)
             {
