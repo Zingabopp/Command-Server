@@ -25,7 +25,7 @@ namespace Command_Server
         static void Main(string[] args)
         {
             
-            Logger.LogLevel = LogLevel.Trace;
+            Logger.LogLevel = LogLevel.Info;
             Logger.ShortenSourceName = true;
             Logger.ShowTime = false;
             /*
